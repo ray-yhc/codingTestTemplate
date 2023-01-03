@@ -1,12 +1,11 @@
 package cheatSteet;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
-public class DFS {
-
-    // 출처 : https://codingnojam.tistory.com/44
+public class BFS {
 
     /**
      * 방문처리에 사용 할 배열선언
@@ -35,24 +34,35 @@ public class DFS {
         graph[7] = new ArrayList<>(List.of(4,5));
         graph[8] = new ArrayList<>(List.of(1, 2));
 
-        // dfs 실행
-        dfs(1);
+        BFS(1, V);
     }
 
-    static void dfs(int nodeIndex) {
-        // 방문 처리
+    /**
+     * 시작 노드 nodeIndex <br>
+     * BFS 탐색
+     */
+    static void BFS(int nodeIndex, int V) {
+        // BFS 구현을 위한 큐(Queue) 생성
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+
+        // initialize : 현재 노드를 방문한 것으로 표시하고 큐에 삽입(enqueue)
         visited[nodeIndex] = true;
+        queue.add(nodeIndex);
 
-        // 작업 수행
-        System.out.print(nodeIndex + " -> ");
+        // 큐(Queue)의 노드가 모두 사라질 때 까지 반복
+        while (queue.size() != 0) {
+            // 작업 수행
+            // 방문한 노드를 큐에서 추출(dequeue)하고 해당 노드에 대해 작업 수행
+            nodeIndex = queue.poll();
+            System.out.print(nodeIndex + " -> ");
 
-        // 방문한 노드에 인접한 노드 찾기
-        for (int node : graph[nodeIndex]) {
-            // 인접한 노드가 방문한 적이 없다면 DFS 수행
-            if(!visited[node]) {
-                dfs(node);
+            // 방문한 노드와 인접한 모든 노드를 가져온다.
+            for(int node : graph[nodeIndex]) {
+                if (!visited[node]) {
+                    visited[node] = true;
+                    queue.add(node);
+                }
             }
         }
     }
-
 }
