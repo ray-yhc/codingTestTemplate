@@ -1,10 +1,24 @@
 package ch01;
 
+import cheatSteet.Timer;
 import org.junit.jupiter.api.Test;
+
+import java.util.Scanner;
 
 public class Sample {
     public static void main(String[] args) {
-        System.out.println("hello");
+        // init ////////////////////////////////////////
+        Timer timer = new Timer();
+        timer.start();
+        Scanner sc = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
+        /////////////////////////////////////////////////
+        // code start ///////////////////////////////////
+
+        System.out.println(sayHello());
+
+        // code end  ////////////////////////////////////
+        System.out.println("elapsedTime(ns) : " + timer.end());
     }
 
     /**
