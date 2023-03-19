@@ -1,0 +1,7 @@
+3
+4
+BC DB AA CD
+4
+AA BB CC DD
+4
+AD BB CC DA
